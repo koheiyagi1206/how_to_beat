@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :users
+
+  # 管理者設定
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+
+  # ユーザー設定
+  devise_for :users, controllers: {
+    registrations:  "standard/registrations",
+    sessions:       "standard/sessions"
+  }
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
