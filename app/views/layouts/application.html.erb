@@ -11,6 +11,18 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <header>
+      <%= render "temp/header" %>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <%= render "temp/footer" %>
+    </footer>
+
   </body>
 </html>
