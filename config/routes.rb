@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  # root path
+  root to: "standard/homes#top"
+
+  # about page
+  get "/about", to: "standard/homes#about", as: "about"
+
   # 管理者設定
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
