@@ -16,6 +16,12 @@ Rails.application.routes.draw do
     registrations:  "standard/registrations",
     sessions:       "standard/sessions"
   }
+  resources :users, controller: "standard/users", only:[:show, :edit, :update, :destroy] do
+    collection do
+      get "mypage"
+    end
+  end
+  get "/mypage", to: "standard/users#mypage"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
