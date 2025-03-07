@@ -1,0 +1,2 @@
+module Standard::PostBodiesHelper
+end
