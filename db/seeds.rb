@@ -18,3 +18,19 @@ User.create!(
   email:      "user_1@mail.com",
   password:   "123456"
 )
+
+# デバッグ値：user_1投稿
+Post.create!(
+  user_id:  1,
+  title:    "game no stage1-1. "
+)
+
+PostBody.create!(
+  post_id:  1,
+  text:     "this stage is very easy!"
+)
+
+PostBody.create!(
+  post_id:  1,
+  text:     "this character is very strong!"
+)
