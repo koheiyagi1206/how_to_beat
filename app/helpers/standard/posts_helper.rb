@@ -1,0 +1,2 @@
+module Standard::PostsHelper
+end
