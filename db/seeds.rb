@@ -8,6 +8,13 @@
 
 # デバッグ値：管理者ログイン
 Admin.create!(
-  email: "admin@mail.com",
+  email:    "admin@mail.com",
   password: "123456"
+)
+
+# デバッグ値：ユーザーログイン
+User.create!(
+  user_name:  "user_1",
+  email:      "user_1@mail.com",
+  password:   "123456"
 )
