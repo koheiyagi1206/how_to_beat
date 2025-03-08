@@ -12,17 +12,17 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class = "d-flex flex-column vh-100">
 
-    <header>
+    <header class = "sticky-top bg-dark">
       <%= render "temp/header" %>
     </header>
 
-    <main>
+    <main class = "mb-auto">
       <%= yield %>
     </main>
 
-    <footer>
+    <footer class = "bg-dark">
       <%= render "temp/footer" %>
     </footer>
 
