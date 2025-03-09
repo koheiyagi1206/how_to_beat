@@ -10,6 +10,13 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+  namespace :admin do
+    resources :users,     only:[:index, :show, :edit, :update, :destroy]
+    resources :posts,     only:[:show, :destroy]
+    resources :comments,  only:[:show, :destroy]
+    resources :tags,      only:[:index, :destroy]
+  end
+  get "/admin", to: "admin/homes#top"
 
   # ユーザー設定
   devise_for :users, controllers: {
