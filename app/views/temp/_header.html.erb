@@ -24,6 +24,36 @@
         <!-- Adminログイン時のヘッダー -->
         <% if admin_signed_in? %>
 
+          <li class = "nav-item">
+            <%=  link_to admin_users_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-user"></i> All Users
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to admin_groups_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-user-group"></i> All Groups
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to admin_posts_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-newspaper"></i> All Posts
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to admin_tags_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-tags"></i> All Tags
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to destroy_admin_session_path, method: :delete, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            <% end %>
+          </li>
+
         <!-- Userログイン時のヘッダー(ゲスト状態を含む) -->
         <% elsif user_signed_in? && !admin_signed_in? %>
 
