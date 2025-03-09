@@ -28,8 +28,11 @@
   // border-radius:    10px;
   text-decoration:  none;
 }
+.nav_button:hover {
+  text-decoration: none;
+}
 
-/* drop down button */
+/* dropdown button */
 .fa-circle-chevron-down {
   color: white;
 }

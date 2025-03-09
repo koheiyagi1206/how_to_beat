@@ -39,6 +39,36 @@
             <% end %>
           </li>
 
+          <!-- Groups DropDown -->
+          <li class = "nav-item dropdown">
+            <a class = "nav_button text-light dropdown-toggle" data-bs-toggle = "dropdown">
+              <i class="fa-solid fa-user-group"></i> Groups
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class = "dropdown-item" href = "<%= new_group_path %>">New Group</a></li>
+              <li><a class = "dropdown-item" href = "<%= groups_path %>">My Groups</a></li>
+              <li><a class = "dropdown-item" href = "<%= groups_path %>">All Groups</a></li>
+            </ul>
+          </li>
+
+          <!-- Posts DropDown -->
+          <li class = "nav-item dropdown">
+            <a class = "nav_button text-light dropdown-toggle" data-bs-toggle = "dropdown">
+              <i class="fa-solid fa-newspaper"></i> Posts
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class = "dropdown-item" href = "<%= new_post_path %>">New Post</a></li>
+              <li><a class = "dropdown-item" href = "<%= posts_path %>">My Posts</a></li>
+              <li><a class = "dropdown-item" href = "<%= posts_path %>">All Posts</a></li>
+            </ul>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to tags_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-tags"></i> Tags
+            <% end %>
+          </li>
+
           <li class = "nav-item">
             <%=  link_to destroy_user_session_path, method: :delete, class: "nav_button text-light" do %>
               <i class="fa-solid fa-right-from-bracket"></i> Sign Out
@@ -70,6 +100,5 @@
 
       </ul>
     </div>
-
   </div>
 </nav>
