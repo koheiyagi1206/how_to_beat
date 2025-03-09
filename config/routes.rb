@@ -25,11 +25,11 @@ Rails.application.routes.draw do
     sessions:       "standard/sessions"
   }
   resources :users, controller: "standard/users", only:[:show, :edit, :update, :destroy]
+  resources :groups,  controller: "standard/groups"
   resources :posts, controller: "standard/posts" do
     resources :post_bodies, controller: "standard/post_bodies", only:[:create, :update, :destroy]
     resources :comments,    controller: "standard/comments",    only:[:create, :update, :destroy]
   end
-  resources :groups,  controller: "standard/groups"
   resources :tags,    controller: "standard/tags", only:[:index, :update, :destroy]
   get "/mypage", to: "standard/users#mypage"
 
