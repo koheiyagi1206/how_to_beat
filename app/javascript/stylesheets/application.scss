@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-/* header & footer background-color */
-.bg-custom {
-  // background: skyblue;
-}
-
 /* header logo image */
 .logo-image {
   width:              300px;
@@ -23,9 +18,7 @@
 .nav_button {
   margin:           10px;
   padding:          10px;
-  // background:     navy;
   color:          white;
-  // border-radius:    10px;
   text-decoration:  none;
 }
 .nav_button:hover {
@@ -35,4 +28,10 @@
 /* dropdown button */
 .fa-circle-chevron-down {
   color: white;
+}
+
+/* site title */
+span.site_title {
+  font-size: 80px;
+  font-family: "Arial Black", sans-serif;
 }

@@ -1,0 +1,41 @@
+<%# サイドバーの部分テンプレートファイル %>
+<div class = "col-md-3">
+
+  <!-- 新着記事 -->
+  <h2>New Posts</h2>
+  <div>
+    <table class = "table">
+      <tbody>
+        <% post_obj.first(5).each do |p_obj| %>
+          <tr>
+            <th>
+              <a href = "<%= post_path(p_obj.id) %>">
+                <%= p_obj.title %> <i class="fa-solid fa-share-from-square"></i>
+              </a>
+            </th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 新着コメント -->
+  <h2>New Comments</h2>
+  <div>
+    <table class = "table">
+      <tbody>
+        <% comment_obj.first(10).each do |c_obj| %>
+          <tr>
+            <th>
+              <a href = "<%= post_path(c_obj.post_id) %>">
+                <%= c_obj.post.title %> <i class="fa-solid fa-share-from-square"></i><br />
+              </a>
+              <%= c_obj.comment.truncate(20) %><br />
+              <%= c_obj.user.user_name %>
+            <th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
