@@ -30,7 +30,7 @@ Post.create!(
   title:    "game no stage1-1. "
 )
 Post.create!(
-  user_id:  1,
+  user_id:  2,
   title:    "game no stage2-1. "
 )
 Post.create!(
@@ -50,10 +50,50 @@ Post.create!(
 Comment.create!(
   post_id: 1,
   user_id: 2,
-  comment: "so good!! so good!! so good!! so good!! so good!!"
+  comment: "comment. comment. comment. comment. comment. comment."
 )
 Comment.create!(
   post_id: 2,
   user_id: 2,
-  comment: "so smart!!"
+  comment: "comment. comment. comment. comment. comment. comment."
+)
+Comment.create!(
+  post_id: 2,
+  user_id: 2,
+  comment: "comment. comment. comment. comment. comment. comment."
+)
+Comment.create!(
+  post_id: 2,
+  user_id: 2,
+  comment: "comment. comment. comment. comment. comment. comment."
+)
+Comment.create!(
+  post_id: 3,
+  user_id: 2,
+  comment: "comment. comment. comment. comment. comment. comment."
+)
+Comment.create!(
+  post_id: 3,
+  user_id: 2,
+  comment: "comment. comment. comment. comment. comment. comment."
+)
+Comment.create!(
+  post_id: 4,
+  user_id: 2,
+  comment: "comment. comment. comment. comment. comment. comment."
+)
+Comment.create!(
+  post_id: 4,
+  user_id: 2,
+  comment: "comment. comment. comment. comment. comment. comment."
+)
+Comment.create!(
+  post_id: 4,
+  user_id: 2,
+  comment: "comment. comment. comment. comment. comment. comment."
+)
+Comment.create!(
+  post_id: 4,
+  user_id: 2,
+  comment: "comment. comment. comment. comment. comment. comment."
 )
