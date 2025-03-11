@@ -13,13 +13,13 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class = "d-flex flex-column vh-100">
+  <body class = "d-flex flex-column vh-100 bg-dark">
 
     <header class = "sticky-top bg-dark">
       <%= render "temp/header" %>
     </header>
 
-    <main class = "mb-auto">
+    <main class = "mb-auto bg-light">
       <%= yield %>
     </main>
 
