@@ -24,7 +24,7 @@
   <div>
     <table class = "table">
       <tbody>
-        <% comment_obj.first(10).each do |c_obj| %>
+        <% comment_obj.first(5).each do |c_obj| %>
           <tr>
             <th>
               <a href = "<%= post_path(c_obj.post_id) %>">
