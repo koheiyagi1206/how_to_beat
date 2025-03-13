@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  $new_arrivals_comments  = Comment.order(updated_at: :desc).includes(:user, :post)
 
   # コメント数の多い順で記事を抽出
   def comment_many_order_sort
@@ -12,8 +13,7 @@ class ApplicationController < ActionController::Base
     end
 
     # コメント数の多い順にソート
-    sorted_post = Post.select(:id, :title).where(id: array_target_search).index_by(&:id).values_at(*array_target_search)
-    return sorted_post
+    $sorted_post = Post.select(:id, :title).where(id: array_target_search).index_by(&:id).values_at(*array_target_search)
 
   end
 
