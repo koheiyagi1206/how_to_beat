@@ -21,7 +21,9 @@
                   <%= image_tag new_p.get_post_image(300, 100), class: "card-img-top" %>
                 <% end %>
                 <h5 class = "card-title"><%= new_p.title %></h5>
-                <h6 class = "card-subtitle mb-2 text-body-secondary"><%= l new_p.updated_at, format: :long %></h6>
+                <h6 class = "card-subtitle mb-2 text-body-secondary">
+                  <%= l new_p.updated_at, format: :long %>&nbsp;&nbsp;<%= new_p.user.user_name %>
+                </h6>
               </div>
             </div>
           </div>
