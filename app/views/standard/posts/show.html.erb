@@ -1,1 +1,15 @@
-<h1>standard/posts/show.html</h1>
+<%# Show Post Page View %>
+<div class = "container p-3">
+
+  <span class = "page_title">
+    <i class="fa-solid fa-eye"></i> Show Post
+  </span>
+
+  <div class = "row">
+    <%= render partial: "temp/sidebar", locals: {post_obj: $sorted_post, comment_obj: $new_arrivals_comments} %>
+
+    <div class = "col-md-9">
+      <h1><%= @target_post.title %></h1>
+    </div>
+  </div>
+</div>

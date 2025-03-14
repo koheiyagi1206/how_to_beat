@@ -1,8 +1,37 @@
 <%# New Post Create Page View %>
 <div class = "container p-3">
 
-  <span class = "site_title">
+  <span class = "page_title">
     <i class="fa-solid fa-plus"></i> New Post
   </span>
 
+  <div class = "row">
+    <%= render partial: "temp/sidebar", locals: {post_obj: $sorted_post, comment_obj: $new_arrivals_comments} %>
+
+    <div class = "col-md-9">
+      <h1>Create New Post</h1>
+
+      <%= form_with model: @new_post, local: true do |new_p| %>
+
+        <%# タイトル登録エリア %>
+        <div class = "row">
+          <div class = "col-md-3">
+            <h5><%= new_p.label :title, "投稿タイトル：", class: "col-form-label" %></h5>
+          </div>
+          <div class = "col-md-12">
+            <%= new_p.text_field :title, class: "form-control", placeholder: "title", style: "width: 100%;" %>
+          </div>
+        </div>
+
+        <%# TODO:投稿ボディ追加エリア %>
+
+        <%# 投稿ボタン %>
+        <div class = "row">
+          <div class = "col-md-3">
+            <%= new_p.submit "Create New Post", class: "btn btn-success", style: "margin-top: 15px;" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

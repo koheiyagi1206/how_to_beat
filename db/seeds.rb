@@ -24,76 +24,24 @@ User.create!(
   password:   "123456"
 )
 
-# デバッグ値：user_1投稿
+# デバッグ値：投稿
 Post.create!(
   user_id:  1,
   title:    "game no stage1-1. "
 )
-Post.create!(
-  user_id:  2,
-  title:    "game no stage2-1. "
+PostBody.create!(
+  post_id:  1,
+  text:     "this stage is very easy!"
 )
-Post.create!(
-  user_id:  1,
-  title:    "game no stage3-1. "
-)
-Post.create!(
-  user_id:  1,
-  title:    "game no stage4-1. "
-)
-Post.create!(
-  user_id:  1,
-  title:    "game no stage5-1. "
+PostBody.create!(
+  post_id:  1,
+  text:     "this stage is very hard!"
 )
 
-# デバッグ値：post_id:1に対するコメント
+
+# デバッグ値：コメント
 Comment.create!(
   post_id: 1,
   user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 2,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 2,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 2,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 3,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 3,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 4,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 4,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 4,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
-)
-Comment.create!(
-  post_id: 4,
-  user_id: 2,
-  comment: "comment. comment. comment. comment. comment. comment."
+  comment: "comment for post_id:1."
 )
