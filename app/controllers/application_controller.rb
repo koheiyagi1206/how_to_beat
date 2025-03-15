@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   # コメント数の多い順で記事を抽出
   def comment_many_order_sort
-    comment_counts = Comment.group(:post_id).count
+    comment_counts        = Comment.group(:post_id).count
     sorted_comment_counts = comment_counts.sort_by { |key, value| value }.reverse.to_h
 
     # 検索用の配列を作成

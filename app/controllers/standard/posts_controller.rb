@@ -25,7 +25,7 @@ class Standard::PostsController < ApplicationController
   end
 
   def edit
-    @target_post      = Post.find(params[:id])
+    @target_post = Post.find(params[:id])
   end
 
   def update
