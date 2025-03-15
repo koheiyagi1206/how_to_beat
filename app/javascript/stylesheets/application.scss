@@ -35,3 +35,13 @@ span.page_title {
   font-size:    80px;
   font-family:  "Arial Black", sans-serif;
 }
+
+/* pagination design */
+span.current,
+.first a,
+.prev a,
+.page a,
+.next a,
+.last a {
+  padding: 0 5px;
+}

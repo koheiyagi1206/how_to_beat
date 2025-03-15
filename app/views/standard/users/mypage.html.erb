@@ -5,4 +5,76 @@
     <i class="fa-solid fa-user"></i> My Page
   </span>
 
+  <div class = "row">
+    <%= render partial: "temp/sidebar", locals: {post_obj: $sorted_post, comment_obj: $new_arrivals_comments} %>
+
+    <div class = "col-md-9">
+      <h1>My Profile</h1>
+
+      <%= form_with model: @me, local: true do |me| %>
+
+        <%# プロフィール表示エリア %>
+        <div class = "row">
+          <div class = "col-md-10">
+            <table class = "table">
+              <tbody>
+                <tr>
+                  <th width = "30%">User Name</th>
+                  <th width = "70%"><%= @me.user_name %></th>
+                </tr>
+                <tr>
+                  <th width = "30%">User Email</th>
+                  <th width = "70%"><%= @me.email %></th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class = "col-md-12">
+            <%= link_to "Edit Profile >>", edit_user_path(@me) %>
+          </div>
+
+          <hr width = "100%">
+        </div>
+
+        <%# My Posts表示エリア %>
+        <h1>My Posts</h1>
+
+        <div class = "row">
+          <div class = "col-md-10">
+            <table class = "table">
+              <tbody>
+                <% @my_posts.each do |my_post| %>
+                  <tr>
+                    <th width = "70%">
+                      <a href = "<%= post_path(my_post.id) %>">
+                        <%= my_post.title.truncate(50) %> <i class="fa-solid fa-share-from-square"></i>
+                      </a>
+                    </th>
+                    <th width = "30%">
+                      <%= l my_post.updated_at, format: :long %>
+                    </th>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class = "col-md-12">
+            <%= paginate @my_posts %>
+          </div>
+
+          <hr width = "100%">
+        </div>
+
+        <%# My Groups表示エリア %>
+        <h1>My Groups</h1>
+
+        <div class = "row">
+          <hr width = "100%">
+        </div>
+
+      <% end %>
+    </div>
+  </div>
 </div>
