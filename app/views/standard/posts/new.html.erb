@@ -24,6 +24,36 @@
         </div>
 
         <%# TODO:投稿ボディ追加エリア %>
+        <div class = "row">
+          <%= new_p.fields_for :post_bodies, @new_post.post_bodies.build do |new_p_body| %>
+            <div class = "col-md-3">
+              <h5><%= new_p_body.label :text, "投稿内容：", class: "col-form-label", style: "margin-top: 15px;" %></h5>
+            </div>
+
+            <table class = "table table-borderless" style = "width: 100%;" id = "post_body_table">
+              <tbody>
+                <tr>
+                  <td colspan = "2" style = "width: 80%;"><%= new_p_body.text_area :text, placeholder: "text", style: "width: 100%;" %></td>
+                  <td class = "align-middle" style = "width: 20%;"><input class = "btn btn-danger" type = "button" value = "Delete" onclick = "RemoveRow(this)"></td>
+                </tr>
+                <tr>
+                  <td class = "align-middle" style = "width: 40%;"><%= new_p_body.text_field :image_title, placeholder: "image title", style: "width: 100%;" %></td>
+                  <td class = "align-middle" style = "width: 40%;"><%= new_p_body.file_field :image_body, accept: "image/*", placeholder: "image" %></td>
+                  <td class = "align-middle" style = "width: 20%;"><input class = "btn btn-danger" type = "button" value = "Delete" onclick = "RemoveRow(this)"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+            <%# Row追加ボタン %>
+            <div class = "col-md-4">
+              <input class = "btn btn-primary" style = "width: 100%;" type = "button" value = "Add Text Row" onclick = "AddRow('post_body_table')">
+            </div>
+            <div class = "col-md-4">
+              <input class = "btn btn-primary" style = "width: 100%;" type = "button" value = "Add Image Row" onclick = "AddRow('post_body_table')">
+            </div>
+          <% end %>
+        </div>
 
         <%# 投稿ボタン %>
         <div class = "row">

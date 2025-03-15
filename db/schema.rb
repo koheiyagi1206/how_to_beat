@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 2025_03_10_163512) do
     t.integer "post_id", null: false
     t.text "text"
     t.string "image_title"
-    t.binary "image_body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_post_bodies_on_post_id"

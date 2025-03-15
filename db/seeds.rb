@@ -23,25 +23,3 @@ User.create!(
   email:      "user_2@mail.com",
   password:   "123456"
 )
-
-# デバッグ値：投稿
-Post.create!(
-  user_id:  1,
-  title:    "game no stage1-1. "
-)
-PostBody.create!(
-  post_id:  1,
-  text:     "this stage is very easy!"
-)
-PostBody.create!(
-  post_id:  1,
-  text:     "this stage is very hard!"
-)
-
-
-# デバッグ値：コメント
-Comment.create!(
-  post_id: 1,
-  user_id: 2,
-  comment: "comment for post_id:1."
-)

@@ -21,7 +21,8 @@ class Standard::PostsController < ApplicationController
   end
 
   def show
-    @target_post = Post.find(params[:id])
+    @target_post      = Post.find(params[:id])
+    @target_post_body = PostBody.where(post_id: @target_post.id)
   end
 
   def edit

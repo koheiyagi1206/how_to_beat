@@ -4,7 +4,6 @@ class CreatePostBodies < ActiveRecord::Migration[6.1]
       t.references  :post, null: false, foreign_key: true
       t.text        :text
       t.string      :image_title
-      t.binary      :image_body
 
       t.timestamps
     end
