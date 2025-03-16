@@ -1,0 +1,135 @@
+<%# 動的ヘッダーの部分テンプレートファイル %>
+<nav class = "navbar navbar-expand-lg">
+  <div class = container>
+
+    <a class = "navbar-brand" href = "/">
+      <span class = "site_title">
+        <i class="fa-solid fa-gamepad" style = "color: deepskyblue"></i>
+        HOW T<i class="fa-solid fa-heart-pulse" style="color: red;"></i> BEAT
+        <i class="fa-solid fa-gamepad fa-flip-horizontal" style = "color: red"></i>
+      </span>
+    </a>
+
+    <button
+      class         = "navbar-toggler collapsed"
+      type          = "button"
+      data-toggle   = "collapse"
+      data-target   = "#navbarNavDropdown"
+      aria-controls = "navbarNavDropdown"
+      aria-expanded = "false"
+      aria-label    = "Toggle navigation"
+    >
+      <i class = "fa-solid fa-circle-chevron-down fa-xl"></i>
+    </button>
+
+    <div class = "collapse navbar-collapse" id = "navbarNavDropdown">
+      <ul class = "navbar-nav ml-auto">
+
+        <!-- Adminログイン時のヘッダー -->
+        <% if admin_signed_in? %>
+
+          <li class = "nav-item">
+            <%=  link_to admin_users_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-user"></i> All Users
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to admin_groups_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-user-group"></i> All Groups
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to admin_posts_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-newspaper"></i> All Posts
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to admin_tags_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-tags"></i> All Tags
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to destroy_admin_session_path, method: :delete, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            <% end %>
+          </li>
+
+        <!-- Userログイン時のヘッダー(ゲスト状態を含む) -->
+        <% elsif user_signed_in? && !admin_signed_in? %>
+
+          <li class = "nav-item">
+            <%=  link_to mypage_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-user"></i> My Page
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to about_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-circle-info"></i> About
+            <% end %>
+          </li>
+
+          <!-- Groups DropDown -->
+          <li class = "nav-item dropdown">
+            <a class = "nav_button text-light dropdown-toggle" href = "#" data-bs-toggle = "dropdown">
+              <i class="fa-solid fa-user-group"></i> Groups
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class = "dropdown-item" href = "<%= new_group_path %>">New Group</a></li>
+              <li><a class = "dropdown-item" href = "<%= groups_path %>">All Groups</a></li>
+            </ul>
+          </li>
+
+          <!-- Posts DropDown -->
+          <li class = "nav-item dropdown">
+            <a class = "nav_button text-light dropdown-toggle" href = "#" data-bs-toggle = "dropdown">
+              <i class="fa-solid fa-newspaper"></i> Posts
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class = "dropdown-item" href = "<%= new_post_path %>">New Post</a></li>
+              <li><a class = "dropdown-item" href = "<%= posts_path %>">All Posts</a></li>
+            </ul>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to tags_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-tags"></i> Tags
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to destroy_user_session_path, method: :delete, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            <% end %>
+          </li>
+
+        <!-- 非ログイン時のヘッダー -->
+        <% else %>
+
+          <li class = "nav-item">
+            <%=  link_to about_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-circle-info"></i> About
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to new_user_registration_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-user-plus"></i> Sign Up
+            <% end %>
+          </li>
+
+          <li class = "nav-item">
+            <%=  link_to new_user_session_path, class: "nav_button text-light" do %>
+              <i class="fa-solid fa-right-to-bracket"></i> Sign In
+            <% end %>
+          </li>
+
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

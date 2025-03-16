@@ -1,0 +1,2 @@
+module Standard::TagsHelper
+end

@@ -1,0 +1,38 @@
+<%# Top Page View %>
+<div class = "container p-3">
+
+  <span class = "page_title">
+    HOW T<i class="fa-solid fa-heart-pulse" style="color: red;"></i> BEAT
+  </span>
+
+  <div class = "row">
+    <%= render partial: "temp/sidebar", locals: {post_obj: $sorted_post, comment_obj: $new_arrivals_comments} %>
+
+    <div class = "col-md-9">
+      <h1>Let's Beat the Game!</h1>
+
+      <%# 新着記事を6件分表示 %>
+      <div class = "row">
+        <% @new_arrivals_posts.each do |new_p| %>
+          <div class = "col-md-6">
+            <div class = "card border border-1 mx-auto mt-4" style = "height: auto;">
+              <div class = "card-body py-0">
+                <%= link_to post_path(new_p.id) do %>
+                  <%= image_tag new_p.get_post_image(300, 100), class: "card-img-top" %>
+                <% end %>
+                <h5 class = "card-title"><%= new_p.title %></h5>
+                <h6 class = "card-subtitle mb-2 text-body-secondary">
+                  <%= l new_p.updated_at, format: :long %>&nbsp;&nbsp;<%= new_p.user.user_name %>
+                </h6>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class = "col-md-12 text-right mt-3 mb-3">
+          <%= link_to "すべての投稿を見る >>", posts_path, style: "text-decoration: underline;" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

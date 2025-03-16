@@ -1,0 +1,49 @@
+<%# Edit Post Page View %>
+<div class = "container p-3">
+
+  <span class = "page_title">
+    <i class="fa-solid fa-pen-to-square"></i> Edit Post
+  </span>
+
+  <div class = "row">
+    <%= render partial: "temp/sidebar", locals: {post_obj: $sorted_post, comment_obj: $new_arrivals_comments} %>
+
+    <div class = "col-md-9">
+      <h1>Edit a Post</h1>
+
+      <%= form_with model: @target_post, local: true do |target_p| %>
+
+        <%# 投稿タイトル編集エリア %>
+        <div class = "row">
+          <div class = "col-md-3">
+            <h5><%= target_p.label :title, "投稿タイトル：", class: "col-form-label" %></h5>
+          </div>
+          <div class = "col-md-12">
+            <%= target_p.text_field :title, class: "form-control", placeholder: "title", style: "width: 100%;" %>
+          </div>
+        </div>
+
+        <%# TODO:投稿ボディ編集エリア %>
+
+        <%# 投稿更新・削除ボタン %>
+        <div class = "row">
+          <div class = "col-md-3">
+            <%= target_p.submit "Update Post Title", method: :patch, class: "btn btn-success", style: "margin-top: 15px;" %>
+          </div>
+
+          <div class = "col-md-3">
+            <a
+              class         = "btn btn-danger"
+              style         = "margin-top: 15px;"
+              data-confirm  = "投稿：「<%= @target_post.title %>」を削除します。よろしいですか？"
+              href          = "<%= post_path %>"
+              data-method   = "delete"
+            >
+              Delete a Post
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
