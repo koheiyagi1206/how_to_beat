@@ -7,7 +7,7 @@ function AddRow(add_type) {
   // 追加タイプ分岐
   if (add_type == "add_text") {
     // テキスト追加
-    var table_html      = `
+    var table_html = `
       <table class = "table table-borderless" style = "width: 100%;">
         <tbody>
           <tr>

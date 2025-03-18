@@ -10,6 +10,14 @@ class Standard::PostsController < ApplicationController
     @new_post.user_id = current_user.id
 
     if @new_post.save
+      @new_post_body = PostBody.where(post_id: @new_post.id).order(id: :asc)
+
+      @new_post_body.each do |new_p_body|
+        if new_p_body.image_body.attached?
+          @new_post.post_image.attach(new_p_body.image_body.blob)
+        end
+      end
+
       redirect_to post_path(@new_post)
     else
       render :new

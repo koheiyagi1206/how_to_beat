@@ -18,7 +18,7 @@
             <div class = "card border border-1 mx-auto mt-4" style = "height: auto;">
               <div class = "card-body py-0">
                 <%= link_to post_path(all_p.id) do %>
-                  <%= image_tag all_p.get_post_image(300, 100), class: "card-img-top" %>
+                  <%= image_tag all_p.get_post_image, class: "card-img-top" %>
                 <% end %>
                 <h5 class = "card-title"><%= all_p.title %></h5>
                 <h6 class = "card-subtitle mb-2 text-body-secondary">
