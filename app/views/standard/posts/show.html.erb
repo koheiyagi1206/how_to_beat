@@ -10,6 +10,32 @@
 
     <div class = "col-md-9">
       <h1><%= @target_post.title %></h1>
+
+      <div class = "row">
+        <% @target_post_body.each do |target_p_body| %>
+
+          <%# text %>
+          <% if target_p_body.text %>
+            <div class = "col-md-12">
+              <%= target_p_body.text %>
+            </div>
+          <% end %>
+
+          <%# image_title %>
+          <% if target_p_body.image_title %>
+            <div class = "col-md-12">
+              <%= target_p_body.image_title %>
+            </div>
+          <% end %>
+
+          <%# image_body %>
+          <% if target_p_body.image_body.blob %>
+            <div class = "col-md-12">
+              <%= image_tag target_p_body.image_body, class: "show_image" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

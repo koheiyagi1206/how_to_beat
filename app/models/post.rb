@@ -17,5 +17,4 @@ class Post < ApplicationRecord
     end
     post_image.variant(gravity: :center, resize:"660x438^", crop:"660x438+0+0", background:"white").processed
   end
-
 end

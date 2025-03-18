@@ -10,12 +10,11 @@ class Standard::PostsController < ApplicationController
     @new_post.user_id = current_user.id
 
     if @new_post.save
-      @new_post_body = PostBody.where(post_id: @new_post.id).order(id: :asc)
+      @new_post_body      = PostBody.where(post_id: @new_post.id).order(id: :asc).includes(:image_body_blob)
+      selected_post_body  = @new_post_body.find { |body| body.image_body.attached? }
 
-      @new_post_body.each do |new_p_body|
-        if new_p_body.image_body.attached?
-          @new_post.post_image.attach(new_p_body.image_body.blob)
-        end
+      if selected_post_body
+        @new_post.post_image.attach(selected_post_body.image_body.blob)
       end
 
       redirect_to post_path(@new_post)
@@ -30,7 +29,7 @@ class Standard::PostsController < ApplicationController
 
   def show
     @target_post      = Post.find(params[:id])
-    @target_post_body = PostBody.where(post_id: @target_post.id)
+    @target_post_body = PostBody.where(post_id: @target_post.id).includes(:image_body_blob)
   end
 
   def edit

@@ -45,3 +45,10 @@ span.current,
 .last a {
   padding: 0 5px;
 }
+
+/* show page image_body */
+.show_image {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+}
