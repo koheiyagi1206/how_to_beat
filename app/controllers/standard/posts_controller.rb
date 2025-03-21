@@ -16,8 +16,12 @@ class Standard::PostsController < ApplicationController
       if selected_post_body
         @new_post.post_image.attach(selected_post_body.image_body.blob)
       end
+
+      flash[:notice] = "Post Was Successfully Created."
       redirect_to post_path(@new_post)
+
     else
+      flash[:notice] = "Please Enter the Post Title."
       render :new
     end
   end
@@ -67,6 +71,7 @@ class Standard::PostsController < ApplicationController
       redirect_to post_path(@target_post)
 
     else
+      flash[:notice] = "Please Enter the Post Title."
       render :edit
     end
   end
@@ -83,6 +88,7 @@ class Standard::PostsController < ApplicationController
 
     target_post.post_image.purge
     target_post.destroy
+    flash[:notice] = "Post is Deleted."
     redirect_to root_path
   end
 
