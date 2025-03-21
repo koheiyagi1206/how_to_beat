@@ -23,7 +23,7 @@ class Standard::PostsController < ApplicationController
   end
 
   def index
-    @all_posts = Post.all
+    @all_posts = Post.all.page(params[:page]).per(6)
   end
 
   def show
