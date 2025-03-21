@@ -10,6 +10,34 @@
 
     <div class = "col-md-9">
       <h1><%= @target_post.title %></h1>
+
+      <div class = "row">
+        <% @target_post_body.each do |target_p_body| %>
+
+          <%# text %>
+          <% if target_p_body.text %>
+            <div class = "col-md-12" style = "margin: 15px 0;">
+              <p><%= simple_format(target_p_body.text) %></p>
+            </div>
+          <% end %>
+
+          <%# image_title %>
+          <% if target_p_body.image_title %>
+            <div class = "col-md-12" style = "margin: 0 15px;">
+              <h5><%= target_p_body.image_title %></h5>
+            </div>
+          <% end %>
+
+          <%# image_body %>
+          <% if target_p_body.image_body.blob %>
+            <div class = "col-md-12" style = "margin: 0 15px;">
+              <%= link_to rails_blob_path(target_p_body.image_body), target: '_blank' do %>
+                <%= image_tag target_p_body.image_body.variant(resize: '660x438', gravity: 'Center', extent: '660x438') %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
