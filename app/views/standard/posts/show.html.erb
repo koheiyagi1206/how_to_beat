@@ -10,6 +10,29 @@
 
     <div class = "col-md-9">
       <h1><%= @target_post.title %></h1>
+      <h5 style = "text-align: right;">
+        <%= l @target_post.updated_at, format: :long %>&nbsp;&nbsp;
+
+        <% if @target_post.user.id == current_user.id %>
+          <%= link_to mypage_path do %>
+            <%= @target_post.user.user_name %>
+          <% end %>
+        <% else%>
+          <%= link_to user_path(@target_post.user) do %>
+            <%= @target_post.user.user_name %>
+          <% end %>
+        <% end %>
+      </h5>
+
+      <% if @target_post.user_id == current_user.id %>
+        <div class = "row">
+          <div class = "col-md-12" style = "text-align: right;">
+            <%= link_to edit_post_path(@target_post) do %>
+              Edit a Post >>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
 
       <div class = "row">
         <% @target_post_body.each do |target_p_body| %>
