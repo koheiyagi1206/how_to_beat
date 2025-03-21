@@ -23,7 +23,7 @@ class Standard::PostsController < ApplicationController
   end
 
   def index
-    @all_posts = Post.all.page(params[:page]).per(6)
+    @all_posts = Post.all.order(updated_at: :desc).includes(post_bodies: :image_body_blob).page(params[:page]).per(6)
   end
 
   def show
