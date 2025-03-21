@@ -23,18 +23,57 @@
           </div>
         </div>
 
-        <%# TODO:投稿ボディ編集エリア %>
+        <%# 投稿ボディ編集エリア %>
+        <div class = "row" style = "margin-top: 15px;">
+          <div class = "col-md-3">
+            <h5><label class = "col-form-label">投稿内容：</label></h5>
+          </div>
+        </div>
+
+        <div class = "row" id = "add_target_row">
+          <div class = "col-md-12">
+            <%= target_p.fields_for :post_bodies do |target_p_body| %>
+              <%= target_p_body.hidden_field :id %>
+              <table class = "table table-borderless" style = "width: 100%;">
+                <tbody>
+                  <tr>
+                    <% if target_p_body.object.text.present? %>
+                      <td style = "width: 80%;"><%= target_p_body.text_area :text, placeholder: "text", style: "width: 100%;" %></td>
+                    <% end %>
+
+                    <% if target_p_body.object.image_title.present? || target_p_body.object.image_body.present? %>
+                      <td class = "align-middle" style = "width: 40%;"><%= target_p_body.text_field :image_title, placeholder: "image title", style: "width: 100%;" %></td>
+                      <td class = "align-middle" style = "width: 40%;"><%= target_p_body.file_field :image_body, accept: "image/*", placeholder: "image" %></td>
+                    <% end %>
+
+                    <td class = "align-middle" style = "width: 20%;"><input class = "btn btn-danger" type = "button" value = "Delete" onclick = "RemoveRow(this)"></td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
+        </div>
+
+        <%# 投稿ボディ追加ボタン %>
+        <div class = "row">
+          <div class = "col-md-4">
+            <input class = "btn btn-primary" style = "width: 100%;" type = "button" value = "Add Text Row" onclick = "AddRow('add_text')">
+          </div>
+          <div class = "col-md-4">
+            <input class = "btn btn-primary" style = "width: 100%;" type = "button" value = "Add Image Row" onclick = "AddRow('add_image')">
+          </div>
+        </div>
 
         <%# 投稿更新・削除ボタン %>
         <div class = "row">
-          <div class = "col-md-3">
-            <%= target_p.submit "Update Post Title", method: :patch, class: "btn btn-success", style: "margin-top: 15px;" %>
+          <div class = "col-md-4">
+            <%= target_p.submit "Update a Post", method: :patch, class: "btn btn-success", style: "margin-top: 15px; width: 100%;" %>
           </div>
 
-          <div class = "col-md-3">
+          <div class = "col-md-4">
             <a
               class         = "btn btn-danger"
-              style         = "margin-top: 15px;"
+              style         = "margin-top: 15px; width: 100%;"
               data-confirm  = "投稿：「<%= @target_post.title %>」を削除します。よろしいですか？"
               href          = "<%= post_path %>"
               data-method   = "delete"

@@ -23,8 +23,6 @@ function AddRow(add_type) {
     div_element.innerHTML = table_html;
 
     add_target_row.appendChild(div_element);
-    console.log("Tableの個数：" + table_count);
-
   } else {
     // 画像追加
     var table_count = add_target_row.getElementsByTagName("table").length + 1;
@@ -44,8 +42,6 @@ function AddRow(add_type) {
     div_element.innerHTML = table_html;
 
     add_target_row.appendChild(div_element);
-    console.log("Tableの個数：" + table_count);
-
   }
 }
 

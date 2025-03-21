@@ -16,7 +16,6 @@ class Standard::PostsController < ApplicationController
       if selected_post_body
         @new_post.post_image.attach(selected_post_body.image_body.blob)
       end
-
       redirect_to post_path(@new_post)
     else
       render :new
@@ -40,14 +39,49 @@ class Standard::PostsController < ApplicationController
     @target_post = Post.find(params[:id])
 
     if @target_post.update(post_params)
+
+      # RemoveRowされたものをテーブルから削除
+      if post_params[:post_bodies_attributes]
+        post_params[:post_bodies_attributes].each do |key, value|
+          if value["text"].nil? && value["image_title"].nil?
+            target_record = PostBody.find(value["id"])
+            if target_record.image_body.attached?
+              target_record.image_body.purge
+            end
+            target_record.destroy
+          end
+        end
+      end
+
+      # サムネイル画像の再設定
+      target_post_body    = PostBody.where(post_id: @target_post.id).order(id: :asc).includes(:image_body_blob)
+      selected_post_body  = target_post_body.find { |body| body.image_body.attached? }
+
+      if selected_post_body
+        @target_post.post_image.attach(selected_post_body.image_body.blob)
+      else
+        file_path = Rails.root.join("app/assets/images/no_image.jpg")
+        @target_post.post_image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/jpg")
+      end
+
       redirect_to post_path(@target_post)
+
     else
       render :edit
     end
   end
 
   def destroy
-    target_post = Post.find(params[:id])
+    target_post       = Post.find(params[:id])
+    target_post_body  = PostBody.where(post_id: target_post.id).includes(:image_body_blob)
+
+    target_post_body.each do |target_p_body|
+      if target_p_body.image_body.attached?
+        target_p_body.image_body.purge
+      end
+    end
+
+    target_post.post_image.purge
     target_post.destroy
     redirect_to root_path
   end
@@ -58,7 +92,7 @@ class Standard::PostsController < ApplicationController
         :title,
         :post_image,
         post_bodies_attributes: [
-          :post_id, :text, :image_title, :image_body, :_destroy
+          :id, :post_id, :text, :image_title, :image_body, :_destroy
         ]
       )
     end
