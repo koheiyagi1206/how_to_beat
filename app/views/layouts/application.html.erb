@@ -22,6 +22,11 @@
     </header>
 
     <main class = "mb-auto bg-light">
+
+      <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+      <% end %>
+
       <%= yield %>
     </main>
 

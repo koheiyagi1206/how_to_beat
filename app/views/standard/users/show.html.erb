@@ -1,1 +1,76 @@
-<h1>users/show</h1>
+<%# User Page View %>
+<div class = "container p-3">
+
+  <span class = "page_title">
+    <i class="fa-solid fa-eye"></i> <%= @target_user.user_name %>'s Page
+  </span>
+
+  <div class = "row">
+    <%= render partial: "temp/sidebar", locals: {post_obj: $sorted_post, comment_obj: $new_arrivals_comments} %>
+
+    <div class = "col-md-9">
+      <h1><%= @target_user.user_name %>'s Profile</h1>
+
+      <%= form_with model: @target_user, local: true do |target_user| %>
+
+        <%# プロフィール表示エリア %>
+        <div class = "row">
+          <div class = "col-md-10">
+            <table class = "table">
+              <tbody>
+                <tr>
+                  <th width = "30%">User Name</th>
+                  <th width = "70%"><%= @target_user.user_name %></th>
+                </tr>
+                <tr>
+                  <th width = "30%">User Email</th>
+                  <th width = "70%"><%= @target_user.email %></th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <hr width = "100%">
+        </div>
+
+        <%# My Posts表示エリア %>
+        <h1><%= @target_user.user_name %>'s Posts</h1>
+
+        <div class = "row">
+          <div class = "col-md-10">
+            <table class = "table">
+              <tbody>
+                <% @target_posts.each do |target_post| %>
+                  <tr>
+                    <th width = "70%">
+                      <a href = "<%= post_path(target_post.id) %>">
+                        <%= target_post.title.truncate(50) %> <i class="fa-solid fa-share-from-square"></i>
+                      </a>
+                    </th>
+                    <th width = "30%">
+                      <%= l target_post.updated_at, format: :long %>
+                    </th>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class = "col-md-12">
+            <%= paginate @target_posts %>
+          </div>
+
+          <hr width = "100%">
+        </div>
+
+        <%# My Groups表示エリア %>
+        <h1><%= @target_user.user_name %>'s Groups</h1>
+
+        <div class = "row">
+          <hr width = "100%">
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

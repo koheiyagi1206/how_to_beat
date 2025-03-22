@@ -1,5 +1,5 @@
 class Standard::PostsController < ApplicationController
-  before_action :comment_many_order_sort
+  before_action :comment_many_order_sort, :authenticate_user!
 
   def new
     @new_post = Post.new
@@ -16,14 +16,18 @@ class Standard::PostsController < ApplicationController
       if selected_post_body
         @new_post.post_image.attach(selected_post_body.image_body.blob)
       end
+
+      flash[:notice] = "Post Was Successfully Created."
       redirect_to post_path(@new_post)
+
     else
+      flash[:notice] = "Please Enter the Post Title."
       render :new
     end
   end
 
   def index
-    @all_posts = Post.all
+    @all_posts = Post.all.order(updated_at: :desc).includes(post_bodies: :image_body_blob).page(params[:page]).per(6)
   end
 
   def show
@@ -67,6 +71,7 @@ class Standard::PostsController < ApplicationController
       redirect_to post_path(@target_post)
 
     else
+      flash[:notice] = "Please Enter the Post Title."
       render :edit
     end
   end
@@ -83,6 +88,7 @@ class Standard::PostsController < ApplicationController
 
     target_post.post_image.purge
     target_post.destroy
+    flash[:notice] = "Post is Deleted."
     redirect_to root_path
   end
 
