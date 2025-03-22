@@ -17,7 +17,7 @@
           <%= link_to mypage_path do %>
             <%= @target_post.user.user_name %>
           <% end %>
-        <% else%>
+        <% else %>
           <%= link_to user_path(@target_post.user) do %>
             <%= @target_post.user.user_name %>
           <% end %>
