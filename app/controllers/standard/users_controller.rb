@@ -1,5 +1,5 @@
 class Standard::UsersController < ApplicationController
-  before_action :comment_many_order_sort
+  before_action :comment_many_order_sort, :authenticate_user!
 
   def mypage
     @me       = User.find(current_user.id)
