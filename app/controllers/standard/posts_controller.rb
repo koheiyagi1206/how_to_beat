@@ -21,7 +21,7 @@ class Standard::PostsController < ApplicationController
       redirect_to post_path(@new_post)
 
     else
-      flash[:notice] = "Please Enter the Post Title."
+      flash.now[:notice] = @new_post.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -68,10 +68,11 @@ class Standard::PostsController < ApplicationController
         @target_post.post_image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/jpg")
       end
 
+      flash[:notice] = "Post Was Successfully Updated."
       redirect_to post_path(@target_post)
 
     else
-      flash[:notice] = "Please Enter the Post Title."
+      flash.now[:notice] = @target_post.errors.full_messages.join(", ")
       render :edit
     end
   end
