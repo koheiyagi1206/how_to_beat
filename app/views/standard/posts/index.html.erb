@@ -1,0 +1,39 @@
+<%# Index Post Page View %>
+<div class = "container p-3">
+
+  <span class = "page_title">
+    <i class="fa-solid fa-list"></i> All Posts
+  </span>
+
+  <div class = "row">
+    <%= render partial: "temp/sidebar", locals: {post_obj: $sorted_post, comment_obj: $new_arrivals_comments} %>
+
+    <div class = "col-md-9">
+      <h1>All Posts</h1>
+
+      <%# 記事を新着順で全件表示 %>
+      <div class = "row">
+        <% @all_posts.each do |all_p| %>
+          <div class = "col-md-6">
+            <div class = "card border border-1 mx-auto mt-4" style = "height: auto;">
+              <div class = "card-body py-0">
+                <%= link_to post_path(all_p.id) do %>
+                  <%= image_tag all_p.get_post_image, class: "card-img-top" %>
+                <% end %>
+                <h5 class = "card-title"><%= all_p.title %></h5>
+                <h6 class = "card-subtitle mb-2 text-body-secondary">
+                  <%= l all_p.updated_at, format: :long %>&nbsp;&nbsp;<%= all_p.user.user_name %>
+                </h6>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class = "col-md-12">
+          <%= paginate @all_posts %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

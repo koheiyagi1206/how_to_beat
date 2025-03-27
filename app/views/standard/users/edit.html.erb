@@ -1,0 +1,55 @@
+<%# User Page View %>
+<div class = "container p-3">
+
+  <span class = "page_title">
+    <i class="fa-solid fa-pen-to-square"></i> Edit Profile Page
+  </span>
+
+  <div class = "row">
+    <%= render partial: "temp/sidebar", locals: {post_obj: $sorted_post, comment_obj: $new_arrivals_comments} %>
+
+    <div class = "col-md-9">
+      <h1>My Profile</h1>
+
+      <%= form_with model: @target_user, local: true do |target_user| %>
+
+        <div class = "row">
+          <div class = "col-md-3">
+            <h5><%= target_user.label :user_name, "User Name:", class: "col-form-label" %></h5>
+          </div>
+          <div class = "col-md-12">
+            <%= target_user.text_field :user_name, class: "form-control", placeholder: "user name", style: "width: 100%;" %>
+          </div>
+        </div>
+
+        <div class = "row">
+          <div class = "col-md-3">
+            <h5><%= target_user.label :email, "E-Mail", class: "col-form-label" %></h5>
+          </div>
+          <div class = "col-md-12">
+            <%= target_user.email_field :email, class: "form-control", placeholder: "email", style: "width: 100%;", autocomplete: "email" %>
+          </div>
+        </div>
+
+        <div class = "row">
+          <div class = "col-md-4">
+            <%= target_user.submit "Update a Profile", method: :patch, class: "btn btn-success", style: "margin-top: 15px; width: 100%;" %>
+          </div>
+
+          <div class = "col-md-4">
+            <a
+              class         = "btn btn-danger"
+              style         = "margin-top: 15px; width: 100%;"
+              data-confirm  = "ユーザー：「<%= @target_user.user_name %>」を削除します。よろしいですか？"
+              href          = "<%= user_path %>"
+              data-method   = "delete"
+            >
+              Delete a User
+            </a>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
