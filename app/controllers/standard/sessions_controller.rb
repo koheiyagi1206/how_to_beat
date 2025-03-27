@@ -18,6 +18,13 @@ class Standard::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def guest_sign_in
+    guest_user = User.guest
+
+    sign_in guest_user
+    redirect_to root_path(guest_user), notice: "ゲストユーザーでログインしました。"
+  end
+
   protected
     def after_sign_in_path_for(resource)
       mypage_path
