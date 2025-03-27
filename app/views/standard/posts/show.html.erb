@@ -61,6 +61,59 @@
           <% end %>
         <% end %>
       </div>
+
+      <hr width = "100%">
+
+      <%# 新規コメントエリア %>
+      <% if @target_post.user_id != current_user.id %>
+        <div class = "row">
+          <div class = "col-md-12">
+            <%= form_with model: [@target_post, @new_comment] do |new_comment| %>
+              <div class = "row" style = "margin-top: 15px; margin-bottom: 15px;">
+                <div class = "col-md-12">
+                  <%= new_comment.text_area :comment, style: "width: 70%;", placeholder: "new comment is here." %>
+                </div>
+                <div class = "col-md-4">
+                  <%= new_comment.submit "Post Comment", class: "btn btn-success" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <hr width = "100%">
+
+      <% end %>
+
+      <%# コメント表示エリア %>
+      <div class = "row">
+        <div class = "col-md-12">
+          <h2>All Comments</h2>
+
+          <div class = "row">
+            <div class = "col-md-12">
+              <% @post_comments.each do |comment| %>
+                <ul>
+                  <li><h5><%= comment.user.user_name %></h5></li>
+                  <h6 style = "
+                        width: 70%;
+                        padding: 10px;
+                        margin-bottom: 10px;
+                        border: 1px solid black;
+                      "
+                  >
+                    <%= simple_format(comment.comment) %>
+                  </h6>
+
+                  <% if comment.user_id == current_user.id %>
+                    <%= link_to "Delete a Comment", post_comment_path(comment.post_id, comment), class: "btn btn-danger", method: :delete %>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -33,6 +33,9 @@ class Standard::PostsController < ApplicationController
   def show
     @target_post      = Post.find(params[:id])
     @target_post_body = PostBody.where(post_id: @target_post.id).includes(:image_body_blob)
+
+    @new_comment    = Comment.new
+    @post_comments  = Comment.where(post_id: @target_post.id)
   end
 
   def edit

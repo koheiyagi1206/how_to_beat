@@ -1,5 +1,6 @@
 class Standard::UsersController < ApplicationController
   before_action :comment_many_order_sort, :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
 
   def mypage
     @me       = User.find(current_user.id)
@@ -36,6 +37,13 @@ class Standard::UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:user_name, :email)
+    end
+
+    def ensure_guest_user
+      @user = User.find(params[:id])
+      if @user.email == "guest@example.com"
+        redirect_to mypage_path, notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      end
     end
 
 end
