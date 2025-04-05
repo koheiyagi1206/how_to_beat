@@ -10,7 +10,7 @@
       <table class = "table">
         <thead>
           <tr>
-            <th>Post ID</th>
+            <th>ID</th>
             <th>Post Title</th>
             <th>Comments</th>
             <th colspan = "2">Registration Date</th>
@@ -22,7 +22,7 @@
             <% if post.user.user_name != "guest_user" %>
               <tr>
                 <td style = "vertical-align:middle;"><%= post.id %></td>
-                <td style = "vertical-align:middle;"><%= post.title %></td>
+                <td style = "vertical-align:middle;"><%= post.title.truncate(20) %></td>
                 <td style = "vertical-align:middle;"><%= post.comments.count %></td>
                 <td style = "vertical-align:middle;"><%= l post.created_at, format: :long %></td>
                 <td style = "vertical-align:middle;">
