@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :users,     only:[:index, :destroy]
     resources :groups,    only:[:index, :show, :destroy]
     resources :posts,     only:[:index, :show, :destroy]
-    resources :comments,  only:[:show,  :destroy]
+    resources :comments,  only:[:index, :show, :destroy]
     resources :tags,      only:[:index, :destroy]
   end
   get "/admin", to: "admin/homes#top"
