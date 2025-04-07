@@ -2,8 +2,9 @@ class Standard::CommentsController < ApplicationController
   before_action :comment_many_order_sort, :authenticate_user!
 
   def create
-    target_post = Post.find(params[:post_id])
-    comment     = current_user.comments.new(comment_params)
+    target_post   = Post.find(params[:post_id])
+    comment       = current_user.comments.new(comment_params)
+    comment.score = Language.get_data(comment_params[:comment])
 
     comment.post_id = target_post.id
 

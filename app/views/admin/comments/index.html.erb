@@ -11,9 +11,10 @@
         <thead>
           <tr>
             <th>ID</th>
+            <th>Post Title</th>
             <th>Comment User</th>
             <th>Comment</th>
-            <th>Emotion Analysis</th>
+            <th>Emotion</th>
             <th colspan = "2">Registration Date</th>
           </tr>
         </thead>
@@ -22,9 +23,25 @@
           <% @all_comments.each do |comment| %>
             <tr>
               <td style = "vertical-align:middle;"><%= comment.id %></td>
+              <td style = "vertical-align:middle;"><%= comment.post.title.truncate(20) %></td>
               <td style = "vertical-align:middle;"><%= comment.user.user_name %></td>
               <td style = "vertical-align:middle;"><%= comment.comment.truncate(20) %></td>
-              <td style = "vertical-align:middle;"></td>
+
+              <%# コメントの感情分析に応じて色分け %>
+              <% if comment.score < 0.0 %>
+                <td style = "vertical-align:middle; color: red;">
+                  <%= comment.score %>
+                </td>
+              <% elsif comment.score > 0.0 %>
+                <td style = "vertical-align:middle; color: green;">
+                  <%= comment.score %>
+                </td>
+              <% else %>
+                <td style = "vertical-align:middle;">
+                  <%= comment.score %>
+                </td>
+              <% end %>
+
               <td style = "vertical-align:middle;"><%= l comment.created_at, format: :long %></td>
               <td style = "vertical-align:middle;">
                 <a
