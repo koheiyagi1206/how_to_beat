@@ -1,0 +1,67 @@
+<%# Admin All Comments Page View %>
+<div class = "container p-3">
+
+  <span class = "page_title">
+    <i class="fa-solid fa-comments"></i> All Comments
+  </span>
+
+  <div class = "row">
+    <div class = "col-md-12">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Post Title</th>
+            <th>Comment User</th>
+            <th>Comment</th>
+            <th>Emotion</th>
+            <th colspan = "2">Registration Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @all_comments.each do |comment| %>
+            <tr>
+              <td style = "vertical-align:middle;"><%= comment.id %></td>
+              <td style = "vertical-align:middle;"><%= comment.post.title.truncate(20) %></td>
+              <td style = "vertical-align:middle;"><%= comment.user.user_name %></td>
+              <td style = "vertical-align:middle;"><%= comment.comment.truncate(20) %></td>
+
+              <%# コメントの感情分析に応じて色分け %>
+              <% if comment.score < 0.0 %>
+                <td style = "vertical-align:middle; color: red;">
+                  <%= comment.score %>
+                </td>
+              <% elsif comment.score > 0.0 %>
+                <td style = "vertical-align:middle; color: green;">
+                  <%= comment.score %>
+                </td>
+              <% else %>
+                <td style = "vertical-align:middle;">
+                  <%= comment.score %>
+                </td>
+              <% end %>
+
+              <td style = "vertical-align:middle;"><%= l comment.created_at, format: :long %></td>
+              <td style = "vertical-align:middle;">
+                <a
+                  class         = "btn btn-danger"
+                  data-confirm  = "コメント：「<%= comment.comment %>」を削除します。よろしいですか？"
+                  href          = "<%= admin_comment_path(comment) %>"
+                  data-method   = "delete"
+                >
+                  Delete a Comment
+                </a>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class = "col-md-12">
+      <%= paginate @all_comments %>
+    </div>
+  </div>
+
+</div>
