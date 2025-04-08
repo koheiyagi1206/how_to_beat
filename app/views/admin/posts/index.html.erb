@@ -1,1 +1,50 @@
-<h1>admin/posts/index.html</h1>
+<%# Admin All Posts Page View %>
+<div class = "container p-3">
+
+  <span class = "page_title">
+    <i class="fa-solid fa-list"></i> All Posts
+  </span>
+
+  <div class = "row">
+    <div class = "col-md-12">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Post Title</th>
+            <th>Comments</th>
+            <th colspan = "2">Registration Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @all_posts.each do |post| %>
+            <% if post.user.user_name != "guest_user" %>
+              <tr>
+                <td style = "vertical-align:middle;"><%= post.id %></td>
+                <td style = "vertical-align:middle;"><%= post.title.truncate(20) %></td>
+                <td style = "vertical-align:middle;"><%= post.comments.count %></td>
+                <td style = "vertical-align:middle;"><%= l post.created_at, format: :long %></td>
+                <td style = "vertical-align:middle;">
+                  <a
+                    class         = "btn btn-danger"
+                    data-confirm  = "投稿：「<%= post.title %>」を削除します。よろしいですか？"
+                    href          = "<%= admin_post_path(post) %>"
+                    data-method   = "delete"
+                  >
+                    Delete a Post
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class = "col-md-12">
+      <%= paginate @all_posts %>
+    </div>
+  </div>
+
+</div>
